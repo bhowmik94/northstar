@@ -1,0 +1,120 @@
+/* Form */
+.win-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.win-form select,
+.win-form input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+  color: #1a1a1a;
+  appearance: none;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.win-form select:focus,
+.win-form input[type="text"]:focus {
+  border-color: #555;
+}
+
+.win-form input[type="text"]::placeholder {
+  color: #bbb;
+}
+
+.btn-primary {
+  align-self: flex-end;
+  padding: 9px 20px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover {
+  background: #333;
+}
+
+/* Win list */
+.win-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.win-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+}
+
+.win-item-content {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.win-area-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.win-description {
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Actions placeholder — ready for Edit / Delete */
+.win-item-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.btn-ghost {
+  padding: 4px 10px;
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.btn-ghost:hover {
+  border-color: #aaa;
+  color: #1a1a1a;
+}
+
+.win-empty {
+  font-size: 0.9rem;
+  color: #aaa;
+  padding: 12px 0;
+}
