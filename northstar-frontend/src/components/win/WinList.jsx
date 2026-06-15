@@ -1,5 +1,4 @@
 export default function WinList({ wins, areas }) {
-  console.log(wins);
   const getAreaName = (areaID) => {
     const area = areas.find((a) => a.id == areaID);
     return area ? area.name : "Unknown Area";
@@ -8,7 +7,7 @@ export default function WinList({ wins, areas }) {
   return (
     <>
       <ul className="win-list">
-        {wins.map((win, index) => (
+        {wins?.map((win, index) => (
           <li key={win.id ?? index} className="win-item">
             <div className="win-item-content">
               <span className="win-area-tag">{getAreaName(win.area_id)}</span>

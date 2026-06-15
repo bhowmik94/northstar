@@ -24,8 +24,7 @@ function App() {
     fetch("http://localhost:3000/wins")
       .then((res) => res.json())
       .then((data) => {
-        setWins(data);
-        console.log(data);
+        setWins(data || []);
       });
   }, []);
 
@@ -45,7 +44,7 @@ function App() {
 
         <section className="section">
           <h2 className="section-title">History</h2>
-          <WinList wins={wins} areas={areas} />
+          {wins.length > 0 && <WinList wins={wins} areas={areas} />}
         </section>
       </div>
     </>

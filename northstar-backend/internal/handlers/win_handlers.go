@@ -2,35 +2,42 @@ package handlers
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/sourav/northstar/internal/database"
 	"github.com/sourav/northstar/internal/models"
 )
 
-var Areas = []models.Area{
-	{ID: 1, Name: "Career"},
-	{ID: 2, Name: "German"},
-	{ID: 3, Name: "Photography"},
-	{ID: 4, Name: "Health"},
-	{ID: 5, Name: "Projects"},
-}
-
-var Wins = []models.Win{}
-
 func GetAreas(c *fiber.Ctx) error {
-	return c.JSON(Areas)
+	areas := []models.Area{}
+	err := database.DB.Select(&areas, "SELECT id, name from areas")
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(areas)
 }
 
 func GetWins(c *fiber.Ctx) error {
-	return c.JSON(Wins)
+	wins := []models.Win{}
+	err := database.DB.Select(&wins, "SELECT id, area_id, description FROM wins")
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(wins)
 }
 
 func CreateWin(c *fiber.Ctx) error {
 	var win models.Win
 	if err := c.BodyParser(&win); err != nil {
-		return c.Status(400).JSON(fiber.Map{
-			"error": err.Error(),
-		})
+		return c.Status(400).JSON(fiber.Map{"error": err.Error()})
 	}
-	Wins = append(Wins, win)
+
+	err := database.DB.QueryRowx(
+		"INSERT INTO wins (area_id, description) VALUES ($1, $2) RETURNING id, area_id, description",
+		win.AreaID, win.Description,
+	).StructScan(&win)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"error": err.Error()})
+	}
 	return c.Status(201).JSON(win)
 }
 
