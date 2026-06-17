@@ -1,0 +1,81 @@
+/* Form */
+.checkin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkin-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkin-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkin-value {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.checkin-slider {
+  width: 100%;
+  accent-color: #1a1a1a;
+  cursor: pointer;
+}
+
+/* Pills */
+.checkin-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.pill {
+  padding: 6px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.85rem;
+  color: #555;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.pill:hover {
+  border-color: #aaa;
+  color: #1a1a1a;
+}
+
+.pill-active {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #fff;
+}
+
+.pill-emoji {
+  font-size: 1.1rem;
+  padding: 6px 10px;
+}
+
+/* Summary strip */
+.checkin-summary {
+  display: flex;
+  gap: 16px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+}
+
+.checkin-summary-item {
+  font-size: 0.9rem;
+  color: #444;
+}

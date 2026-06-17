@@ -53,43 +53,6 @@
   gap: 2px;
 }
 
-.win-item {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  background: #fff;
-  border: 1px solid #ebebeb;
-  border-radius: 6px;
-}
-
-.win-item-content {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  flex: 1;
-  min-width: 0;
-}
-
-.win-area-tag {
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #888;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.win-description {
-  font-size: 0.95rem;
-  color: #1a1a1a;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 /* Actions placeholder — ready for Edit / Delete */
 .win-item-actions {
   display: flex;
@@ -113,8 +76,72 @@
   color: #1a1a1a;
 }
 
-.win-empty {
+/* Win Item & Edit */
+.win-item {
+  display: grid;
+  grid-template-columns: 110px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+}
+
+.win-item-main,
+.win-item-content {
+  display: contents;
+}
+
+.win-area-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  white-space: nowrap;
+}
+
+.win-description {
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.win-date {
+  font-size: 0.78rem;
+  color: #bbb;
+  white-space: nowrap;
+}
+
+.win-item-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.win-item-editing {
+  align-items: stretch;
+}
+
+.win-edit-select,
+.win-edit-input {
+  padding: 6px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
   font-size: 0.9rem;
-  color: #aaa;
-  padding: 12px 0;
+  background: #fff;
+  color: #1a1a1a;
+  outline: none;
+}
+
+.win-edit-select:focus,
+.win-edit-input:focus {
+  border-color: #555;
+}
+
+.win-edit-input {
+  flex: 1;
 }
