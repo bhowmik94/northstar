@@ -2,6 +2,7 @@ package database
 
 import (
 	"log"
+	"os"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
@@ -10,18 +11,15 @@ import (
 var DB *sqlx.DB
 
 func Connect() {
-	connStr := "host=localhost port=5432 user=postgres password=postgres dbname=northstar sslmode=disable"
-
-	db, err := sqlx.Connect("postgres", connStr)
-	if err != nil {
-		log.Fatal(err)
+	dsn := os.Getenv("DATABASE_URL")
+	if dsn == "" {
+		log.Fatal("DATABASE_URL is not set")
 	}
 
-	err = db.Ping()
+	var err error
+	DB, err = sqlx.Connect("postgres", dsn)
 	if err != nil {
-		log.Fatal(("Cannot connect to DB"), err)
+		log.Fatal("Could not connect to database: ", err)
 	}
-
-	DB = db
-	log.Println("Connected to PosegreSQL")
+	log.Println("Database connected")
 }

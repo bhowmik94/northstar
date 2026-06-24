@@ -1,0 +1,17 @@
+# Go binaries and executables
+bin/
+out/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test output and coverage
+*.test
+c.out
+coverage.txt
+
+# Local environment variables
+.env
+config.local.yaml

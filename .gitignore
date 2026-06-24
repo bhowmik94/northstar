@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# JetBrains IDEs (GoLand, WebStorm)
+.idea/
+
+# Visual Studio Code
+.vscode/
+!.vscode/extensions.json
+
+# Docker overrides
+docker-compose.override.yml
