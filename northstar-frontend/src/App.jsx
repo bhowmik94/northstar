@@ -5,13 +5,17 @@ import heroImg from "./assets/hero.png";
 import "./App.css";
 import WinList from "./components/win/WinList";
 import WinForm from "./components/win/WinForm";
+import ActivityList from "./components/activity/ActivityList";
+import ActivityForm from "./components/activity/ActivityForm";
 import "./styles/wins.css";
+import "./styles/activity.css";
 import CheckInSummary from "./components/checkin/CheckInSummary";
 import CheckInForm from "./components/checkin/CheckInForm";
 
 function App() {
   const [areas, setAreas] = useState([]);
   const [wins, setWins] = useState([]);
+  const [activities, setActivities] = useState([]);
   const [todayCheckIn, setTodayCheckIn] = useState(null);
 
   useEffect(() => {
@@ -33,10 +37,23 @@ function App() {
       .then((data) => {
         setWins(data || []);
       });
+
+    fetch("http://localhost:3000/activity-sessions")
+      .then((res) => res.json())
+      .then((data) => {
+        setActivities(data || []);
+      })
+      .catch((err) => {
+        console.error("Error fetching activity sessions:", err);
+      });
   }, []);
 
   const handleCreateWin = (newWin) => {
     setWins((prevWins) => [...prevWins, newWin]);
+  };
+
+  const handleCreateActivity = (newActivity) => {
+    setActivities((prevActivities) => [...prevActivities, newActivity]);
   };
 
   async function handleUpdateWin(id, updatedWin) {
@@ -46,7 +63,6 @@ function App() {
       body: JSON.stringify(updatedWin),
     });
     const data = await res.json();
-    console.log(data);
     setWins((prevWins) => prevWins.map((w) => (w.id === id ? data : w)));
   }
 
@@ -55,22 +71,56 @@ function App() {
     setWins((prevWins) => prevWins.filter((w) => w.id !== id));
   }
 
+  async function handleUpdateActivity(id, updatedActivity) {
+    const res = await fetch(`http://localhost:3000/activity-sessions/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedActivity),
+    });
+    const data = await res.json();
+    setActivities((prevActivities) =>
+      prevActivities.map((item) => (item.id === id ? data : item))
+    );
+  }
+
+  async function handleDeleteActivity(id) {
+    await fetch(`http://localhost:3000/activity-sessions/${id}`, {
+      method: "DELETE",
+    });
+    setActivities((prevActivities) => prevActivities.filter((item) => item.id !== id));
+  }
+
   return (
     <>
-      <section className="section">
-        {todayCheckIn ? (
-          <CheckInSummary checkIn={todayCheckIn} />
-        ) : (
-          <CheckInForm onCheckInSaved={setTodayCheckIn} />
-        )}
-      </section>
 
       <div className="page">
+      <section className="section">
+        {/* {todayCheckIn ? ( */}
+          <CheckInSummary checkIn={todayCheckIn} />
+        {/* ) : ( */}
+          <CheckInForm onCheckInSaved={setTodayCheckIn} />
+        {/* )} */}
+      </section>
         <h1 className="page-title">My Wins</h1>
 
         <section className="section">
           <h2 className="section-title">Log a win</h2>
           <WinForm areaOptions={areas} onCreateWin={handleCreateWin} />
+        </section>
+
+        <section className="section">
+          <h2 className="section-title">Log activity session</h2>
+          <ActivityForm areaOptions={areas} onCreateActivity={handleCreateActivity} />
+        </section>
+
+        <section className="section">
+          <h2 className="section-title">Activity history</h2>
+          <ActivityList
+            activities={activities}
+            areas={areas}
+            onUpdateActivity={handleUpdateActivity}
+            onDeleteActivity={handleDeleteActivity}
+          />
         </section>
 
         <section className="section">

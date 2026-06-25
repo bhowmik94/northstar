@@ -28,5 +28,11 @@ func main() {
 	app.Post("/check-ins", handlers.CreateCheckIn)
 	app.Get("/check-ins/today", handlers.GetTodayCheckIn)
 
+	app.Get("/activity-sessions", handlers.GetActivitySessions)
+	app.Get("/activity-sessions/:date", handlers.GetActivitySessionsByDate)
+	app.Post("/activity-sessions", handlers.CreateActivitySession)
+	app.Put("/activity-sessions/:id", handlers.UpdateActivitySession)
+	app.Delete("/activity-sessions/:id", handlers.DeleteActivitySession)
+
 	app.Listen(":3000")
 }

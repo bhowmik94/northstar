@@ -1,0 +1,114 @@
+/* Form */
+.activity-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.activity-form select,
+.activity-form input[type="text"],
+.activity-form input[type="number"],
+.activity-form input[type="date"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.activity-form select:focus,
+.activity-form input:focus {
+  border-color: #555;
+}
+
+.activity-form input::placeholder {
+  color: #bbb;
+}
+
+.activity-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+}
+
+.activity-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 100px 100px 130px auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+}
+
+.activity-area-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  white-space: nowrap;
+}
+
+.activity-description {
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-date,
+.activity-duration,
+.activity-created-at {
+  font-size: 0.78rem;
+  color: #bbb;
+  white-space: nowrap;
+}
+
+.activity-item-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.activity-item-editing {
+  align-items: stretch;
+  grid-template-columns: 1fr;
+}
+
+.activity-item-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.activity-item-editing select,
+.activity-item-editing input {
+  padding: 8px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: #fff;
+  color: #1a1a1a;
+  outline: none;
+}
+
+.activity-item-editing select:focus,
+.activity-item-editing input:focus {
+  border-color: #555;
+}
+
+.activity-empty {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+}

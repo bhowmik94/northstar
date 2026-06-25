@@ -17,7 +17,9 @@ const MOOD_OPTIONS = [
   { label: "😫", value: 1 },
 ];
 
+const today = new Date().toISOString().split('T')[0];
 const DEFAULT_STATE = {
+  date: today,
   energy: 5,
   stress: 5,
   available_time: null,
@@ -43,6 +45,17 @@ export default function CheckInForm({ onCheckInSaved }) {
   return (
     <div className="checkin-form">
       <h2 className="section-title">Morning check-in</h2>
+
+      <div className="checkin-row">
+        <label className="checkin-label">Date</label>
+        <input
+          type="date"
+          className="checkin-date"
+          value={form.date}
+          max={today}
+          onChange={(e) => setForm({ ...form, date: e.target.value })}
+        />
+      </div>
 
       <div className="checkin-row">
         <label className="checkin-label">
